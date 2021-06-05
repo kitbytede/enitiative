@@ -5,3 +5,10 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 
 RewriteRule ^page/(\d+)*$ ./index.php?id=$1
 RewriteRule ^admin/(\d+)*$ ./index.php?id=$1&admin
+
+ErrorDocument 400 /index.php?id=9999
+ErrorDocument 401 /index.php?id=9999
+ErrorDocument 403 /index.php?id=9999
+ErrorDocument 404 /index.php?id=9999
+ErrorDocument 500 /index.php?id=9999
+ErrorDocument 503 /index.php?id=9999
