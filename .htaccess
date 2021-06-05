@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^page/(\d+)*$ ./index.php?id=$1
+RewriteRule ^admin/(\d+)*$ ./index.php?id=$1&admin

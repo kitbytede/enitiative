@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // config laden
 require_once('config.inc.php');
 
@@ -16,17 +18,24 @@ if(empty($_GET['id'])){ // default page
 	$_GET['id'] = 1;
 }
 
-if(empty($_GET['admin'])){ // prepare template
-	$tpl_name = 'default';
+if(isset($_GET['data'])){ // REST request
 }
-else{
-	$tpl_name = 'admin';
+else{ // Browser request
+	if(empty($_GET['admin'])){ // prepare template
+		$tpl_name = 'default';
+	}
+	else{
+		$tpl_name = 'admin';
+		require_once('inc/login.inc.php');
+	}
+	$tpl = new Tpl($tpl_name);
+
+	$page_data = $db->get_page_data($_GET['id']);
+
+	// merge content into template
+	$tpl->set($page_data);
+
+	// output
+	echo $tpl;
 }
-$tpl = new Tpl($tpl_name);
-
-$page_data = $db->get_page_data($_GET['id']);
-$tpl->set($page_data);
-
-// output
-echo $tpl;
 ?>
