@@ -1,6 +1,7 @@
 <?php
 class DB{
 	private $pdo;
+
 	function __construct(){
 		global $config;
 
@@ -22,6 +23,32 @@ class DB{
 		$stmt->execute([$page_id]); 
 		$page = $stmt->fetch();
 		return $page;
+	}
+
+	public function update_page_data($page_id, $title, $content){
+		$params['id'] = $page_id;
+
+		$setStr = "`title` = :title,";
+		$params['title'] = $title;
+
+		$setStr .= "`content` = :content";
+		$params['content'] = $content;
+
+		$stmt = $this->pdo->prepare("
+			UPDATE pages
+			SET $setStr
+			WHERE id = :id");
+		$stmt->execute($params);
+	}
+
+	public function create_page_data($title, $content){
+		$params[] = $title;
+		$params[] = $content;
+
+		$stmt = $this->pdo->prepare("
+			INSERT INTO pages (title, content)
+			VALUES (?,?)");
+		$stmt->execute($params);
 	}
 }
 ?>
