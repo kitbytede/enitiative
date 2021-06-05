@@ -15,12 +15,12 @@ class Admin{
 				exit();
 			}
 			else if(!empty($_POST['action']) && $_POST['action'] == 'new'){
-				$new_page = $db->create_page_data($_POST['title'], $_POST['content']);
+				$new_page = $db->create_page_data($_POST['title'], $_POST['content'], $_POST['main_page']);
 				header('Location: ./' . $new_page);
 				exit;
 			}
 			else if(!empty($_POST['action']) && $_POST['action'] == 'update'){
-				$new_page = $db->update_page_data($_GET['id'], $_POST['title'], $_POST['content']);
+				$new_page = $db->update_page_data($_GET['id'], $_POST['title'], $_POST['content'], $_POST['main_page']);
 				header('Location: ./' . $_GET['id']);
 				exit;
 			}
@@ -51,6 +51,12 @@ class Admin{
 				$page_content .= '
 					<form action="[HOME]admin/0" method="post">
 						<div class="form-group">
+							<input type="checkbox" name="main_page" id="main_page" value="1">
+							<label class="form-check-label" for="defaultCheck1">
+							    Startseite
+							</label>
+						</div>
+						<div class="form-group">
 							<input type="text" class="form-control" name="title" id="title" placeholder="Titel">
 						</div>
 						<div class="form-group">
@@ -72,6 +78,12 @@ class Admin{
 				$page_content .= '<h1>ID: ' . $page_data['id'] . '</h1>';
 				$page_content .= '
 					<form action="[HOME]admin/' . $page_data['id']. '" method="post">
+						<div class="form-group">
+							<input type="checkbox" name="main_page" id="main_page" value="1"' . ( $page_data['main_page'] == 1 ? ' checked="checked"' : '') . ' >
+							<label class="form-check-label" for="defaultCheck1">
+							    Startseite
+							</label>
+						</div>
 						<div class="form-group">
 							<input type="text" class="form-control" name="title" id="title" placeholder="Titel" value="' . $page_data['title'] . '">
 						</div>
@@ -123,7 +135,7 @@ class Admin{
 			$ret .= '<li' . ($_GET['id'] == $page['id'] ? ' class="active"' : '') . '>
 						<a class="btn btn-outline-secondary btn-sm" href="[HOME]admin/' . $page['id'] . '">' .
 					$page['id'] .
-					' - ' .  $page['title'] . '</a>
+					' - ' .  $page['title'] . ($page['main_page'] == 1 ? '<i class="bi bi-star"></i>' : '') . '</a>
 					</li>';
 		}
 		return '<ul>' . $ret . '</ul>';

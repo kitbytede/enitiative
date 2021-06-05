@@ -15,7 +15,7 @@ require_once('inc/tpl.class.php');
 // $edited_page = $db->update_page_data(2, 'edited', 'bla edited');
 
 if(!isset($_GET['id'])){ // default page
-	$_GET['id'] = 1;
+	$_GET['id'] = $db->get_main_page_id();
 }
 
 if(isset($_GET['data'])){ // REST request

@@ -29,9 +29,12 @@ ul li.active a{
 h1{
 	line-height: 1;
 }
-textarea{
+textarea, .form-group:first-child + .form-group{
 	margin-top: 1rem;
 }
 form .col{
 	text-align: center;
+}
+.bi-star{
+	float: right;
 }
