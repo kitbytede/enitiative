@@ -1,10 +1,20 @@
+# damit das ganze überhaupt funktioniert, RewriteEngine an
 RewriteEngine On
 
+# wenn kein bestehendes verzeichnis
 RewriteCond %{SCRIPT_FILENAME} !-d
+
+# und keine bestehende Datei
 RewriteCond %{SCRIPT_FILENAME} !-f
 
+# alle Anfragen von /page/[ID] zu index.php?id=[ID] umleiten
 RewriteRule ^page/(\d+)*$ ./index.php?id=$1 [L]
+
+# dasselbe für den Admin-Bereich
 RewriteRule ^admin/(\d+)*$ ./index.php?id=$1&admin [L]
+
+# bei einer HTTP-Fehler auf index.php umleiten und eine nicht existierende Seite aufrufen
+# das handling übernimmt dann das möchtegern-CMS
 
 ErrorDocument 400 /index.php?id=9999
 ErrorDocument 401 /index.php?id=9999
