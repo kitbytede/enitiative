@@ -48,7 +48,24 @@ else{ // Browser request
 		http_response_code(404);
 	}
 
+	// build navigation
+	$page_list = $db->get_page_list();
+
+	$nav = '<ul>';
+	foreach($page_list as $page){
+		$nav .= '<li' . ($_GET['id'] == $page['id'] ? ' class="active"' : '') . '>
+					<a href="[HOME]page/' . $page['id'] . '">' .
+						$page['title'] .
+					'</a>
+				</li>';
+	}
+	$nav .= '</ul>';
+	$page_data['nav'] = $nav;
+
 	// merge content into template
+	if(!isset($_GET['admin'])){
+		$page_data['content'] = str_replace("\r\n", '<br />', $page_data['content']);
+	}
 	$tpl->set($page_data);
 
 	// output
