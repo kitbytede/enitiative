@@ -32,6 +32,16 @@ else{ // Browser request
 
 	$page_data = $db->get_page_data($_GET['id']);
 
+	if(empty($page_data)){
+		$page_data['title'] = 'damn!';
+		$page_data['content'] = '
+			<div class="error">
+				<img src="https://blog.hubspot.com/hubfs/404-error-page-examples.jpeg" alt="oops..." />
+			</div>
+			<h1>Seite wurde nicht gefunden. *ba dum tss*</h1>';
+		http_response_code(404);
+	}
+
 	// merge content into template
 	$tpl->set($page_data);
 
