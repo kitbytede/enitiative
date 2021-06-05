@@ -3,8 +3,8 @@ RewriteEngine On
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 
-RewriteRule ^page/(\d+)*$ ./index.php?id=$1
-RewriteRule ^admin/(\d+)*$ ./index.php?id=$1&admin
+RewriteRule ^page/(\d+)*$ ./index.php?id=$1 [L]
+RewriteRule ^admin/(\d+)*$ ./index.php?id=$1&admin [L]
 
 ErrorDocument 400 /index.php?id=9999
 ErrorDocument 401 /index.php?id=9999

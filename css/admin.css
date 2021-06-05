@@ -1,1 +1,29 @@
-admin.css
+/* global */
+html, body{
+	height: calc(100% - 40px);
+	display: block;
+	padding-top:  50px;
+}
+form{
+	position: absolute;
+	top: 50%;
+	left:  50%;
+	transform: translate(-50%, -50%);
+}
+button.btn{
+	padding:  .5rem 3rem;
+	margin:  2em auto 0 auto;
+	display: block;
+}
+ul{
+	list-style: none;
+	padding-left: 0;
+}
+ul a.btn{
+	display: block;
+	margin-bottom: 1px;
+	text-align: left;
+}
+ul li.active a{
+	font-weight: 700;
+}

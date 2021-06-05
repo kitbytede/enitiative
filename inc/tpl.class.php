@@ -8,14 +8,15 @@ class Tpl{
 
 	public function set($page_data){
 		if(is_array($page_data)){
-			
-			// global replacements
-			global $config;
-			$this->html = str_replace('[HOME]', $config['home'], $this->html);
-			
+
 			foreach($page_data as $key=>$value){
 				$this->html = str_replace('[' . strtoupper($key) . ']', $value, $this->html);
 			}
+
+		// global replacements
+		global $config;
+		$this->html = str_replace('[HOME]', $config['home'], $this->html);
+		
 		}
 	}
 

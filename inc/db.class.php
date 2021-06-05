@@ -21,7 +21,7 @@ class DB{
 			WHERE id = ?
 			LIMIT 0,1");
 		$stmt->execute([$page_id]); 
-		$page = $stmt->fetch();
+		$page = $stmt->fetch(PDO::FETCH_ASSOC);
 		return $page;
 	}
 
@@ -49,6 +49,16 @@ class DB{
 			INSERT INTO pages (title, content)
 			VALUES (?,?)");
 		$stmt->execute($params);
+	}
+
+	public function get_page_list(){
+		$stmt = $this->pdo->prepare("
+			SELECT id, title
+			FROM pages
+			ORDER BY id");
+		$stmt->execute(); 
+		$page_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $page_list;
 	}
 }
 ?>

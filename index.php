@@ -31,6 +31,7 @@ else{ // Browser request
 		$admin = new Admin();
 		$page_data = $admin->get_page_data();
 	}
+
 	$tpl = new Tpl($tpl_name);
 
 	if(empty($page_data)){ // not already set by admin area, get from DB
