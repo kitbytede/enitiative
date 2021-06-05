@@ -8,6 +8,8 @@ if($_SERVER['HTTP_HOST'] == 'enitiative.local'){ // local
 	$config['db']['user'] = 'root';
 	$config['db']['pass'] = '';
 	$config['db']['dbname'] = 'enitiative';
+
+	$config['home'] = 'https://enitiative.local/';
 }
 else{ // DEV
 	$config['db']['host'] = 'intern.enitiative.de';
@@ -15,6 +17,8 @@ else{ // DEV
 	$config['db']['user'] = 'd036a43a';
 	$config['db']['pass'] = 'w3yPyR2LwRDt29an';
 	$config['db']['dbname'] = 'd036a43a';
+
+	$config['home'] = 'https://intern.enitiative.de/wladimirkitkin/';
 }
 
 /* ===== admin-access ===== */

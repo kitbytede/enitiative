@@ -21,16 +21,21 @@ if(empty($_GET['id'])){ // default page
 if(isset($_GET['data'])){ // REST request
 }
 else{ // Browser request
-	if(empty($_GET['admin'])){ // prepare template
+	if(!isset($_GET['admin'])){ // prepare template
 		$tpl_name = 'default';
 	}
 	else{
 		$tpl_name = 'admin';
 		require_once('inc/login.inc.php');
+		require_once('inc/admin.class.php');
+		$admin = new Admin();
+		$page_data = $admin->get_page_data();
 	}
 	$tpl = new Tpl($tpl_name);
 
-	$page_data = $db->get_page_data($_GET['id']);
+	if(empty($page_data)){ // not already set by admin area, get from DB
+		$page_data = $db->get_page_data($_GET['id']);
+	}
 
 	if(empty($page_data)){
 		$page_data['title'] = 'damn!';

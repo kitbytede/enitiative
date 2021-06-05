@@ -1,5 +1,14 @@
 <?php
-if(!empty($_POST['user']) && !empty($_POST['pass']){ // login
+if(strpos($_SERVER["REQUEST_URI"], 'logout')){ // logout
+	session_destroy();
+
+	global $config;
+
+	header('Location: ' . $config['home'] . 'admin/');
+	exit();
+}
+
+if(!empty($_POST['user']) && !empty($_POST['pass'])){ // login
 	$user = htmlspecialchars($_POST['user'], ENT_QUOTES, 'UTF-8');
 	$pass = htmlspecialchars($_POST['pass'], ENT_QUOTES, 'UTF-8');
 
@@ -9,8 +18,5 @@ if(!empty($_POST['user']) && !empty($_POST['pass']){ // login
 	else{
 		$error = 'Zugriff verweigert';
 	}
-}
-if(isset($_GET['logout'])){ // logout
-	session_destroy();
 }
 ?>
