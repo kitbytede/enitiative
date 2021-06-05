@@ -4,16 +4,15 @@ html, body{
 	display: block;
 	padding-top:  50px;
 }
-form{
+form.loginform{
 	position: absolute;
 	top: 50%;
 	left:  50%;
 	transform: translate(-50%, -50%);
 }
-button.btn{
+button.btn, form a.btn{
 	padding:  .5rem 3rem;
 	margin:  2em auto 0 auto;
-	display: block;
 }
 ul{
 	list-style: none;
@@ -26,4 +25,13 @@ ul a.btn{
 }
 ul li.active a{
 	font-weight: 700;
+}
+h1{
+	line-height: 1;
+}
+textarea{
+	margin-top: 1rem;
+}
+form .col{
+	text-align: center;
 }
