@@ -49,6 +49,7 @@ class DB{
 			INSERT INTO pages (title, content)
 			VALUES (?,?)");
 		$stmt->execute($params);
+		return $this->pdo->lastInsertId();
 	}
 
 	public function get_page_list(){
@@ -59,6 +60,11 @@ class DB{
 		$stmt->execute(); 
 		$page_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		return $page_list;
+	}
+
+	public function delete_page($id){
+		$stmt = $this->pdo->prepare("DELETE FROM pages WHERE id = ?");
+		$stmt->execute([$id]);
 	}
 }
 ?>

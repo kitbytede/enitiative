@@ -14,7 +14,7 @@ require_once('inc/tpl.class.php');
 // $new_page = $db->create_page_data('test', 'bla');
 // $edited_page = $db->update_page_data(2, 'edited', 'bla edited');
 
-if(empty($_GET['id'])){ // default page
+if(!isset($_GET['id'])){ // default page
 	$_GET['id'] = 1;
 }
 
